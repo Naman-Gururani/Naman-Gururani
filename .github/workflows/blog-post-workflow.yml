@@ -1,0 +1,23 @@
+name: Latest blog posts
+
+on:
+  schedule:
+    # Runs twice a day; the README updates only when the feed changes.
+    - cron: '0 3,15 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Pull latest posts into README
+        uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          feed_list: 'https://naman-gururani.github.io/rss.xml'
+          max_post_count: 5
+          commit_message: 'docs: update latest blog posts'
