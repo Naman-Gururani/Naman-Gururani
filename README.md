@@ -7,6 +7,7 @@ Data engineer working on **payments and streaming systems** — Kafka, Spark, Re
 
 ### 📖 Latest field notes
 <!-- BLOG-POST-LIST:START -->
+- [Building a portfolio you can walk around](https://naman-gururani.github.io/blog/building-a-portfolio-thats-a-game/)
 <!-- BLOG-POST-LIST:END -->
 
 ### 🛠 What I work with
