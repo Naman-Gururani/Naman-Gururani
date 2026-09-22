@@ -11,9 +11,10 @@ below is done once, in the browser, after this branch lands on `main`.
    variables → Actions → New repository secret, named `METRICS_TOKEN`, holding a
    personal access token with **`read:user`** and **`repo`**. Both stats
    workflows use it when it is there and fall back to the built-in
-   `GITHUB_TOKEN` when it is not. The fallback still renders — correctly
-   labelled — but it cannot see private repositories, so the commit figure is
-   the public remainder and the snake eats only public squares.
+   `GITHUB_TOKEN` when it is not. The fallback still renders, but the
+   contributions total, the repository count and the language shares are only
+   what that token can see, `incl. private` labels going with them, and the
+   snake eats only public squares.
 3. **Run each workflow once by hand:** repo → Actions → pick the workflow → Run
    workflow. They are scheduled daily afterwards and commit only when something
    changed.
