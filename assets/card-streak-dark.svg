@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 200" width="420" height="200" role="img" aria-label="Streak: a current run of 6 days, a longest run of 10, and 1252 contributions between 2025-09-21 and 2026-09-22.">
+<title>STREAK</title>
+<style>
+@keyframes drift-streak-dark{from{transform:translateX(-380px)}to{transform:translateX(0)}}
+.rule{transform-box:fill-box;transform-origin:0 0;animation:drift-streak-dark 9s linear infinite}
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<defs>
+<linearGradient id="holo-streak-dark" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#a9e8ff"/><stop offset="0.17" stop-color="#d9bcff"/><stop offset="0.33" stop-color="#fcd6ff"/>
+<stop offset="0.5" stop-color="#a9e8ff"/><stop offset="0.67" stop-color="#d9bcff"/><stop offset="0.83" stop-color="#fcd6ff"/><stop offset="1" stop-color="#a9e8ff"/>
+</linearGradient>
+<clipPath id="rule-streak-dark"><rect x="20" y="46" width="380" height="2"/></clipPath>
+
+</defs>
+<rect width="420" height="200" rx="14" fill="#141313"/>
+<rect x="0.5" y="0.5" width="419" height="199" rx="13.5" fill="none" stroke="#444748"/>
+<text x="20" y="34" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" letter-spacing="0.14em" fill="#a9e8ff">STREAK</text>
+<text x="400" y="33" text-anchor="end" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" letter-spacing="0.08em" fill="#8d8a89">ST-260922</text>
+<g clip-path="url(#rule-streak-dark)"><rect class="rule" x="20" y="46" width="760" height="2" fill="url(#holo-streak-dark)"/></g>
+
+<text x="83.3" y="122" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="32" font-weight="600" fill="#e5e2e1">6</text><text x="83.3" y="146" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="10" letter-spacing="0.16em" fill="#a9e8ff">CURRENT</text><text x="83.3" y="162" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" fill="#8d8a89">day streak</text>
+<text x="210" y="122" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="32" font-weight="600" fill="#e5e2e1">10</text><text x="210" y="146" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="10" letter-spacing="0.16em" fill="#a9e8ff">LONGEST</text><text x="210" y="162" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" fill="#8d8a89">day streak</text>
+<text x="336.7" y="122" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="32" font-weight="600" fill="#e5e2e1">1,252</text><text x="336.7" y="146" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="10" letter-spacing="0.16em" fill="#a9e8ff">TOTAL</text><text x="336.7" y="162" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" fill="#8d8a89">contributions</text><rect x="146.7" y="86" width="1" height="82" fill="#444748" opacity="0.5"/><rect x="273.3" y="86" width="1" height="82" fill="#444748" opacity="0.5"/>
+<text x="20" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" letter-spacing="0.02em" fill="#8d8a89">contribution calendar · 2025-09-21 → 2026-09-22</text>
+</svg>
