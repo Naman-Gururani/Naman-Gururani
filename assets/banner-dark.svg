@@ -27,7 +27,7 @@
 <rect width="840" height="220" rx="16" fill="#141313"/>
 <rect x="0.5" y="0.5" width="839" height="219" rx="15.5" fill="none" stroke="#444748"/>
 <text x="52" y="96" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-0.5" fill="#e5e2e1">Naman Gururani</text>
-<text x="54" y="126" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" letter-spacing="0.05em" fill="#a9e8ff">@NAMAN-GURURANI</text>
+<text x="54" y="126" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" letter-spacing="0.05em" fill="#a9e8ff">DATA ENGINEER // PAYMENTS &amp; STREAMING</text>
 <g clip-path="url(#rule-dark)"><rect class="drift" x="52" y="144" width="1472" height="3" fill="url(#holo-dark)"/></g>
 <g clip-path="url(#type0-dark)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#e5e2e1"><tspan>payments that must not lose a record</tspan></text></g><g clip-path="url(#type1-dark)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#e5e2e1"><tspan>streams that must not stop</tspan></text></g><g clip-path="url(#type2-dark)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#e5e2e1"><tspan>a portfolio you can walk around</tspan></text></g>
 <rect class="caret" x="54" y="172" width="8" height="19" fill="#a9e8ff"/>
