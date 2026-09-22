@@ -32,6 +32,7 @@ const INK = {
  * moves.
  */
 const DESK_A = [
+  // rows 0-16 — the monitor: bezel, and the dark well the code lines scroll behind
   'kkkkkkoooooooooooooooooooooooooooooooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'kkkkkkosssssssssssssssssssssssssssssssssssssssssssssssokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'kkkkkkosskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkssokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
@@ -49,15 +50,18 @@ const DESK_A = [
   'kkkkkkosskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkssokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'kkkkkkosssssssssssssssssssssssssssssssssssssssssssssssokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'kkkkkkoooooooooooooooooooooooooooooooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
+  // rows 17-21 — the monitor's stand and base; the lit desk top starts at row 18
   'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'ooooooooooooooooooooooooookssssssskooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
   'ooooooooooooooooooooooooookkkkkkkkkooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
   'ooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
   'ooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
+  // rows 22-25 — the mug, lit rim first, standing on the desk
   'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooookcccccccccckoooooo',
   'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooksssssssssskoooooo',
   'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooksssssssssskoooooo',
   'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooksssssssssskkkkkoo',
+  // rows 26-34 — the keyboard, lit top edge first; the hands land on it from row 33
   'ooooooooooooooooooooktttttttttttttttttttttttttttttttttttttttttttttttttttttttkoksssssssssskksskoo',
   'ooooooooooooooooooookssssssssssssssssssssssssssssssssssssssssssssssssssssssskoksssssssssskksskoo',
   'ooooooooooooooooooookssssssssssssssssssssssssssssssssssssssssssssssssssssssskoksssssssssskksskoo',
@@ -67,6 +71,7 @@ const DESK_A = [
   'ooooooooooooooooooooksssskcccccccccckssssssssssssssssssssssssssssssssssssssskoksssssssssskoooooo',
   'ooooooooooooooooooooksssskwwwwwwwwwwkssssssssssssssssssssssssssssssssssssssskokkkkkkkkkkkkoooooo',
   'ooooooooooooooooooookkkkkkwwwwwwwwwwkkkkkkkkkkkkkkkkkkkkkkkkkhhppppppppkkkkkkooooooooooooooooooo',
+  // rows 35-41 — the crown and the headphone band; the arms cross the desk lip at 41
   'oooooooooooooooooooooooookwwwwwwwwwwkoooooookkktkkkoooooooookwwwwwwwwwwkoooooooooooooooooooooooo',
   'oooooooooooooooooooooooookwwwkwwkwwkkooooookkttwttkkooooooookwwwwwwwwwwkoooooooooooooooooooooooo',
   'oooooooooooooooooooooooookwwwkwwkwwkkoooookktwwwwwtkkoooooookwwwwwwwwwwkoooooooooooooooooooooooo',
@@ -74,14 +79,17 @@ const DESK_A = [
   'oooooooooooooooooooooooookwwwkwwkwwkkoooookwwwwwwwwwkoooooookwwwkwwkwwkkoooooooooooooooooooooooo',
   'ooooooooooooooooooooooookkwwwwwwwwkkkoooookwwwwwwwwwkoooooookwwwkwwkwwkkoooooooooooooooooooooooo',
   'oooooooooooooooooooooookkwwwwwwwwwkoooooottwwwwwwwwwttooooookwwwkwwkwwkkkooooooooooooooooooooooo',
+  // rows 42-45 — the desk's front panel, out of the light; a cup at each ear
   'ssssssssssssssssssssssskwwwwwwwwwkkssssssttwwwwwwwwwttsssssskkkwwwwwwwwwkkssssssssssssssssssssss',
   'sssssssssssssssssssssskkwwwwwwwwwksssssssctwwwwwwwwwtcsssssssskkwwwwwwwwwkksssssssssssssssssssss',
   'ssssssssssssssssssssskkwwwwwwwwwkksssssssttwwwwwwwwwttssssssssskwwwwwwwwwwkkssssssssssssssssssss',
   'ssssssssssssssskkkkkkkwwwwwwwwwwkkkkkkkkkttwwwwwwwwwttkkkkkkkkkkkwwwwwwwwwwkkkkkssssssssssssssss',
+  // rows 46-49 — the chair's top edge, showing outside the shoulders
   'sssssssssssssskkoooookwwwwwwwwwwkooooooookkwwwwwwwwwkkooooooooookwwwwwwwwwwkoookksssssssssssssss',
   'ssssssssssssskkooooookwwwwwwwwwwkkoooooookkkwwwwwwwkkkoooooooookkwwwwwwwwwwkooookkssssssssssssss',
   'sssssssssssskkoooooookwwwwwwwwwwwkooooookkwkwwwwwwwkwkkooooooookwwwwwwwwwwwkoooookksssssssssssss',
   'ssssssssssskkooooooookwwwwwwwwwwwkkooookkwwkwwwwwwwkwwkkooooookkwwwwwwwwwwwkooooookkssssssssssss',
+  // rows 50-58 — the neck, the cowl and the shoulder line
   'sssssssssskkooooookookkwwwwwwwwwwwkkkcccwwwkwwwwwwwkwwwhhhkookkwwwwwwwwwwwkkkooooookksssssssssss',
   'ssssssssskkoooooookoookwwwwwwwwwwwwkkwwwwwwwwwwwwwwwwwwwwwhhhkwwwwwwwwwwwwkokoooooookkssssssssss',
   'ssssssssskooooooookoookkwwwwwwwwwwwwwwwwwwwwwwwkwwwwwwwwwwwwwkwwwwwwwwwwwkkokooooooookssssssssss',
@@ -91,6 +99,7 @@ const DESK_A = [
   'ssssssssskooooooookoooookkwwwwwwwwwwwwwwwwwwwwwkwwwwwwwwwwwwwwwwwwwwwwwkkoookooooooookssssssssss',
   'ssssssssskooooooookoooookkwwwwwwwwwwwwwwwwwwwwwkwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
   'ssssssssskooooooookooookkwwwwwwwwwwwwwwwwwwwwwwkwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
+  // rows 59-63 — the torso and the chair, carried off the bottom edge
   'ssssssssskooooooookooookwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
   'ssssssssskooooooookooookwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
   'ssssssssskooooooookooookwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
@@ -98,6 +107,7 @@ const DESK_A = [
   'ssssssssskooooooookoookwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwkoookooooooookssssssssss',
 ]
 const DESK_B = [
+  // rows 0-16 — the monitor: bezel, and the dark well the code lines scroll behind
   'kkkkkkoooooooooooooooooooooooooooooooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'kkkkkkosssssssssssssssssssssssssssssssssssssssssssssssokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'kkkkkkosskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkssokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
@@ -115,15 +125,18 @@ const DESK_B = [
   'kkkkkkosskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkssokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'kkkkkkosssssssssssssssssssssssssssssssssssssssssssssssokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'kkkkkkoooooooooooooooooooooooooooooooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
+  // rows 17-21 — the monitor's stand and base; the lit desk top starts at row 18
   'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
   'ooooooooooooooooooooooooookssssssskooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
   'ooooooooooooooooooooooooookkkkkkkkkooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
   'ooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
   'ooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
+  // rows 22-25 — the mug, lit rim first, standing on the desk
   'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooookcccccccccckoooooo',
   'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooksssssssssskoooooo',
   'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooksssssssssskoooooo',
   'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooksssssssssskkkkkoo',
+  // rows 26-34 — the keyboard, lit top edge first; the hands land on it from row 33
   'ooooooooooooooooooooktttttttttttttttttttttttttttttttttttttttttttttttttttttttkoksssssssssskksskoo',
   'ooooooooooooooooooookssssssssssssssssssssssssssssssssssssssssssssssssssssssskoksssssssssskksskoo',
   'ooooooooooooooooooookssssssssssssssssssssssssssssssssssssssssssssssssssssssskoksssssssssskksskoo',
@@ -133,6 +146,7 @@ const DESK_B = [
   'ooooooooooooooooooookssssssssssssssssssssssssssssssssssssssskhhppppppppksssskoksssssssssskoooooo',
   'ooooooooooooooooooookssssssssssssssssssssssssssssssssssssssskwwwwwwwwwwksssskokkkkkkkkkkkkoooooo',
   'ooooooooooooooooooookkkkkkcccccccccckkkkkkkkkkkkkkkkkkkkkkkkkwwwwwwwwwwkkkkkkooooooooooooooooooo',
+  // rows 35-41 — the crown and the headphone band; the arms cross the desk lip at 41
   'oooooooooooooooooooooooookwwwwwwwwwwkoooooookkktkkkoooooooookwwwwwwwwwwkoooooooooooooooooooooooo',
   'oooooooooooooooooooooooookwwwwwwwwwwkooooookkttwttkkooooooookwwwkwwkwwkkoooooooooooooooooooooooo',
   'oooooooooooooooooooooooookwwwwwwwwwwkoooookktwwwwwtkkoooooookwwwkwwkwwkkoooooooooooooooooooooooo',
@@ -140,14 +154,17 @@ const DESK_B = [
   'oooooooooooooooooooooooookwwwkwwkwwkkoooookwwwwwwwwwkoooooookwwwkwwkwwkkoooooooooooooooooooooooo',
   'oooooooooooooooooooooooookwwwkwwkwwkkoooookwwwwwwwwwkoooooookkkwwwwwwwwkkooooooooooooooooooooooo',
   'ooooooooooooooooooooooookkwwwkwwkwwkkoooottwwwwwwwwwttooooooookwwwwwwwwwkkoooooooooooooooooooooo',
+  // rows 42-45 — the desk's front panel, out of the light; a cup at each ear
   'ssssssssssssssssssssssskkwwwwwwwwwkkkssssttwwwwwwwwwttsssssssskkwwwwwwwwwkssssssssssssssssssssss',
   'sssssssssssssssssssssskkwwwwwwwwwkkssssssctwwwwwwwwwtcssssssssskwwwwwwwwwkksssssssssssssssssssss',
   'ssssssssssssssssssssskkwwwwwwwwwwksssssssttwwwwwwwwwttssssssssskkwwwwwwwwwkkssssssssssssssssssss',
   'ssssssssssssssskkkkkkkwwwwwwwwwwkkkkkkkkkttwwwwwwwwwttkkkkkkkkkkkwwwwwwwwwwkkkkkssssssssssssssss',
+  // rows 46-49 — the chair's top edge, showing outside the shoulders
   'sssssssssssssskkoooookwwwwwwwwwwkooooooookkwwwwwwwwwkkooooooooookwwwwwwwwwwkoookksssssssssssssss',
   'ssssssssssssskkooooookwwwwwwwwwwkkoooooookkkwwwwwwwkkkoooooooookkwwwwwwwwwwkooookkssssssssssssss',
   'sssssssssssskkoooooookwwwwwwwwwwwkooooookkwkwwwwwwwkwkkooooooookwwwwwwwwwwwkoooookksssssssssssss',
   'ssssssssssskkooooooookwwwwwwwwwwwkkooookkwwkwwwwwwwkwwkkooooookkwwwwwwwwwwwkooooookkssssssssssss',
+  // rows 50-58 — the neck, the cowl and the shoulder line
   'sssssssssskkooooookookkwwwwwwwwwwwkkkcccwwwkwwwwwwwkwwwhhhkookkwwwwwwwwwwwkkkooooookksssssssssss',
   'ssssssssskkoooooookoookwwwwwwwwwwwwkkwwwwwwwwwwwwwwwwwwwwwhhhkwwwwwwwwwwwwkokoooooookkssssssssss',
   'ssssssssskooooooookoookkwwwwwwwwwwwwwwwwwwwwwwwkwwwwwwwwwwwwwkwwwwwwwwwwwkkokooooooookssssssssss',
@@ -157,6 +174,7 @@ const DESK_B = [
   'ssssssssskooooooookoooookkwwwwwwwwwwwwwwwwwwwwwkwwwwwwwwwwwwwwwwwwwwwwwkkoookooooooookssssssssss',
   'ssssssssskooooooookoooookkwwwwwwwwwwwwwwwwwwwwwkwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
   'ssssssssskooooooookooookkwwwwwwwwwwwwwwwwwwwwwwkwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
+  // rows 59-63 — the torso and the chair, carried off the bottom edge
   'ssssssssskooooooookooookwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
   'ssssssssskooooooookooookwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
   'ssssssssskooooooookooookwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwkooookooooooookssssssssss',
@@ -261,6 +279,13 @@ function bannerSVG(ink, theme) {
 
   // Each phrase is revealed by growing its own clip rect, one character per
   // step, then cleared when its slot ends.
+  //
+  // The markup gives the first phrase's rect its full width and the caret its
+  // end-of-phrase position, and the animation overrides both while it runs.
+  // That is what a reduced-motion reader is left holding when `animation: none`
+  // takes the animation away: one complete, static tagline with the caret
+  // parked after it, rather than three clip rects stuck at zero width and a
+  // blank line where the tagline should be.
   const clips = PHRASES.map((phrase, i) => {
     const w = phrase.length * CH, t0 = i * SLOT
     const stops = [
@@ -303,7 +328,7 @@ ${PHRASES.map((_, i) => `.t${i}-${theme}{animation:${id('type' + i)} 12s linear 
 <stop offset="0.5" stop-color="${ink.ramp[0]}"/><stop offset="0.67" stop-color="${ink.ramp[1]}"/><stop offset="0.83" stop-color="${ink.ramp[2]}"/><stop offset="1" stop-color="${ink.ramp[0]}"/>
 </linearGradient>
 <clipPath id="${id('rule')}"><rect x="${x0}" y="144" width="736" height="3"/></clipPath>
-${clips.map((c, i) => `<clipPath id="${id('type' + i)}"><rect class="t${i}-${theme}" x="${x0}" y="168" width="0" height="26"/></clipPath>`).join('')}
+${clips.map((c, i) => `<clipPath id="${id('type' + i)}"><rect class="t${i}-${theme}" x="${x0}" y="168" width="${i === 0 ? c.w : 0}" height="26"/></clipPath>`).join('')}
 </defs>
 <rect width="840" height="220" rx="16" fill="${ink.bg}"/>
 <rect x="0.5" y="0.5" width="839" height="219" rx="15.5" fill="none" stroke="${ink.line}"/>
@@ -311,7 +336,7 @@ ${clips.map((c, i) => `<clipPath id="${id('type' + i)}"><rect class="t${i}-${the
 <text x="${x0 + 2}" y="126" font-family="${MONO}" font-size="14" letter-spacing="0.05em" fill="${ink.ramp[0]}">DATA ENGINEER // PAYMENTS &amp; STREAMING</text>
 <g clip-path="url(#${id('rule')})"><rect class="drift" x="${x0}" y="144" width="1472" height="3" fill="url(#${id('holo')})"/></g>
 ${PHRASES.map((phrase, i) => `<g clip-path="url(#${id('type' + i)})"><text x="${x0}" y="${baseline}" font-family="${MONO}" font-size="15" fill="${ink.text}"><tspan>${phrase}</tspan></text></g>`).join('')}
-<rect class="caret" x="${x0 + 2}" y="172" width="8" height="19" fill="${ink.ramp[0]}"/>
+<rect class="caret" x="${x0 + 2}" y="172" width="8" height="19" fill="${ink.ramp[0]}" transform="translate(${clips[0].w} 0)"/>
 ${[0, 1, 2].map(i => `<rect class="pulse" x="${716 + i * 30}" y="${70 + i * 8}" width="14" height="${60 - i * 12}" rx="3" fill="${ink.ramp[i]}" style="animation-delay:${i * 0.6}s"/>`).join('')}
 </svg>
 `

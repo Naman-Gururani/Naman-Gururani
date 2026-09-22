@@ -22,7 +22,7 @@
 <stop offset="0.5" stop-color="#a9e8ff"/><stop offset="0.67" stop-color="#d9bcff"/><stop offset="0.83" stop-color="#fcd6ff"/><stop offset="1" stop-color="#a9e8ff"/>
 </linearGradient>
 <clipPath id="rule-dark"><rect x="52" y="144" width="736" height="3"/></clipPath>
-<clipPath id="type0-dark"><rect class="t0-dark" x="52" y="168" width="0" height="26"/></clipPath><clipPath id="type1-dark"><rect class="t1-dark" x="52" y="168" width="0" height="26"/></clipPath><clipPath id="type2-dark"><rect class="t2-dark" x="52" y="168" width="0" height="26"/></clipPath>
+<clipPath id="type0-dark"><rect class="t0-dark" x="52" y="168" width="324" height="26"/></clipPath><clipPath id="type1-dark"><rect class="t1-dark" x="52" y="168" width="0" height="26"/></clipPath><clipPath id="type2-dark"><rect class="t2-dark" x="52" y="168" width="0" height="26"/></clipPath>
 </defs>
 <rect width="840" height="220" rx="16" fill="#141313"/>
 <rect x="0.5" y="0.5" width="839" height="219" rx="15.5" fill="none" stroke="#444748"/>
@@ -30,6 +30,6 @@
 <text x="54" y="126" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" letter-spacing="0.05em" fill="#a9e8ff">DATA ENGINEER // PAYMENTS &amp; STREAMING</text>
 <g clip-path="url(#rule-dark)"><rect class="drift" x="52" y="144" width="1472" height="3" fill="url(#holo-dark)"/></g>
 <g clip-path="url(#type0-dark)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#e5e2e1"><tspan>payments that must not lose a record</tspan></text></g><g clip-path="url(#type1-dark)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#e5e2e1"><tspan>streams that must not stop</tspan></text></g><g clip-path="url(#type2-dark)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#e5e2e1"><tspan>a portfolio you can walk around</tspan></text></g>
-<rect class="caret" x="54" y="172" width="8" height="19" fill="#a9e8ff"/>
+<rect class="caret" x="54" y="172" width="8" height="19" fill="#a9e8ff" transform="translate(324 0)"/>
 <rect class="pulse" x="716" y="70" width="14" height="60" rx="3" fill="#a9e8ff" style="animation-delay:0s"/><rect class="pulse" x="746" y="78" width="14" height="48" rx="3" fill="#d9bcff" style="animation-delay:0.6s"/><rect class="pulse" x="776" y="86" width="14" height="36" rx="3" fill="#fcd6ff" style="animation-delay:1.2s"/>
 </svg>

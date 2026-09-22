@@ -22,7 +22,7 @@
 <stop offset="0.5" stop-color="#2aa7d0"/><stop offset="0.67" stop-color="#7d4bd0"/><stop offset="0.83" stop-color="#b23fc4"/><stop offset="1" stop-color="#2aa7d0"/>
 </linearGradient>
 <clipPath id="rule-light"><rect x="52" y="144" width="736" height="3"/></clipPath>
-<clipPath id="type0-light"><rect class="t0-light" x="52" y="168" width="0" height="26"/></clipPath><clipPath id="type1-light"><rect class="t1-light" x="52" y="168" width="0" height="26"/></clipPath><clipPath id="type2-light"><rect class="t2-light" x="52" y="168" width="0" height="26"/></clipPath>
+<clipPath id="type0-light"><rect class="t0-light" x="52" y="168" width="324" height="26"/></clipPath><clipPath id="type1-light"><rect class="t1-light" x="52" y="168" width="0" height="26"/></clipPath><clipPath id="type2-light"><rect class="t2-light" x="52" y="168" width="0" height="26"/></clipPath>
 </defs>
 <rect width="840" height="220" rx="16" fill="#f4f4f4"/>
 <rect x="0.5" y="0.5" width="839" height="219" rx="15.5" fill="none" stroke="#c3c0c0"/>
@@ -30,6 +30,6 @@
 <text x="54" y="126" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" letter-spacing="0.05em" fill="#2aa7d0">DATA ENGINEER // PAYMENTS &amp; STREAMING</text>
 <g clip-path="url(#rule-light)"><rect class="drift" x="52" y="144" width="1472" height="3" fill="url(#holo-light)"/></g>
 <g clip-path="url(#type0-light)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#1c1b1b"><tspan>payments that must not lose a record</tspan></text></g><g clip-path="url(#type1-light)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#1c1b1b"><tspan>streams that must not stop</tspan></text></g><g clip-path="url(#type2-light)"><text x="52" y="186" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#1c1b1b"><tspan>a portfolio you can walk around</tspan></text></g>
-<rect class="caret" x="54" y="172" width="8" height="19" fill="#2aa7d0"/>
+<rect class="caret" x="54" y="172" width="8" height="19" fill="#2aa7d0" transform="translate(324 0)"/>
 <rect class="pulse" x="716" y="70" width="14" height="60" rx="3" fill="#2aa7d0" style="animation-delay:0s"/><rect class="pulse" x="746" y="78" width="14" height="48" rx="3" fill="#7d4bd0" style="animation-delay:0.6s"/><rect class="pulse" x="776" y="86" width="14" height="36" rx="3" fill="#b23fc4" style="animation-delay:1.2s"/>
 </svg>
