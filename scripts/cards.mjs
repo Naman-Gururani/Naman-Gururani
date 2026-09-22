@@ -205,23 +205,29 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const serialOf = (code, stamp) => `${code}-${stamp.slice(2).replace(/-/g, '')}`
 
 function overviewCard(p, win, theme, stamp) {
+  // The repo figure is the non-fork one. `totalCount` would be the owner total
+  // — forks and all — sitting an inch above a footer that says forks are
+  // excluded, and disagreeing with the basis the stars row and the languages
+  // card already use. The qualifier rides on the label as well as the footer, so
+  // the number cannot drift away from it again.
   const rows = [
-    ['repositories', num(p.repoCount)],
-    [p.repoCountIsExact ? 'stars earned' : 'stars (newest 100 repos)', num(p.stars)],
+    [p.repoCountIsExact ? 'repositories (no forks)' : 'repositories (no forks, newest 100)', num(p.ownRepos)],
+    ['stars earned', num(p.stars)],
     ['followers', num(p.followers)],
     ['pull requests · issues', `${num(p.pullRequests)} · ${num(p.issues)}`],
     // Never a total nobody measured: this is the calendar's own year, and it
     // claims private work only when the API said there was some.
     [`contributions (last year)${p.restricted > 0 ? ' incl. private' : ''}`, num(p.contributions)],
   ]
-  return cardSVG(
-    { title: 'OVERVIEW', serial: serialOf('OV', stamp), rows, footer: `owned repos, forks excluded · ${win.from} → ${win.to}` },
-    theme,
-  )
+  // Beyond one page of repositories the non-fork count is a floor, not a count,
+  // and the footer has to say which hundred it looked at.
+  const basis = p.repoCountIsExact ? 'owned repos, forks excluded' : `newest 100 of ${num(p.repoCount)} owned, forks excluded`
+  return cardSVG({ title: 'OVERVIEW', serial: serialOf('OV', stamp), rows, footer: `${basis} · ${win.from} → ${win.to}` }, theme)
 }
 
 function streakCard(p, s, win, theme, stamp) {
   const ink = INK[theme]
+  const priv = p.restricted > 0 ? ', incl. private' : ''
   const pad = 20
   const colW = (420 - pad * 2) / 3
   const cols = [
@@ -248,8 +254,11 @@ function streakCard(p, s, win, theme, stamp) {
       title: 'STREAK',
       serial: serialOf('ST', stamp),
       body,
-      footer: `contribution calendar · ${win.from} → ${win.to}`,
-      alt: `Streak: a current run of ${s.current} days, a longest run of ${s.longest}, and ${s.total} contributions between ${win.from} and ${win.to}.`,
+      // All three numbers are read off the same private-inclusive calendar, so
+      // the qualifier belongs to the card rather than to the TOTAL column — and
+      // it has to be the one the overview card uses for the same figure.
+      footer: `contribution calendar${priv} · ${win.from} → ${win.to}`,
+      alt: `Streak: a current run of ${s.current} days, a longest run of ${s.longest}, and ${s.total} contributions${priv} between ${win.from} and ${win.to}.`,
     },
     theme,
   )
@@ -307,7 +316,7 @@ function langsCard(langs, repoCount, theme, stamp) {
   )
 }
 
-function heatmapCard(weeks, today, totalShown, win, theme, stamp) {
+function heatmapCard(weeks, today, totalShown, priv, win, theme, stamp) {
   const ink = INK[theme]
   const W = 840
   const pad = 28
@@ -383,9 +392,9 @@ function heatmapCard(weeks, today, totalShown, win, theme, stamp) {
       serial: serialOf('HM', stamp),
       css: '.wk{animation:wkin .5s ease-out both}\n@keyframes wkin{from{opacity:0}to{opacity:1}}',
       body: `${months}${dayLabels}\n${cells}\n${legend}`,
-      footer: `${num(totalShown)} contributions · ${win.from} → ${win.to}`,
+      footer: `${num(totalShown)} contributions${priv} · ${win.from} → ${win.to}`,
       footerW: legendX - pad - 16,
-      alt: `Contribution heatmap: ${num(totalShown)} contributions between ${win.from} and ${win.to}, one square per day.`,
+      alt: `Contribution heatmap: ${num(totalShown)} contributions${priv} between ${win.from} and ${win.to}, one square per day.`,
     },
     theme,
   )
@@ -424,15 +433,15 @@ async function main() {
   const shown = p.days.filter((d) => d.date <= today)
   const win = { from: shown[0]?.date ?? p.days[0].date, to: shown.at(-1)?.date ?? today }
   const stamp = new Date().toISOString().slice(0, 10)
-  const ownRepos = p.repos.filter((r) => !r.isFork).length
+  const priv = p.restricted > 0 ? ', incl. private' : ''
 
   // Render everything before writing anything.
   const files = []
   for (const theme of ['dark', 'light']) {
     files.push([`card-overview-${theme}.svg`, overviewCard(p, win, theme, stamp)])
     files.push([`card-streak-${theme}.svg`, streakCard(p, s, win, theme, stamp)])
-    files.push([`card-langs-${theme}.svg`, langsCard(langs, ownRepos, theme, stamp)])
-    files.push([`card-heatmap-${theme}.svg`, heatmapCard(p.weeks, today, s.total, win, theme, stamp)])
+    files.push([`card-langs-${theme}.svg`, langsCard(langs, p.ownRepos, theme, stamp)])
+    files.push([`card-heatmap-${theme}.svg`, heatmapCard(p.weeks, today, s.total, priv, win, theme, stamp)])
   }
   for (const [name, body] of files) if (!body || !body.startsWith('<svg')) throw new Error(`${name} did not render`)
 
@@ -440,7 +449,7 @@ async function main() {
   for (const [name, body] of files) writeFileSync(new URL(`../assets/${name}`, import.meta.url), body)
 
   console.log(`cards: ${source} — ${win.from} → ${win.to}`)
-  console.log(`  repos ${p.repoCount} · stars ${p.stars} · followers ${p.followers} · PRs ${p.pullRequests} · issues ${p.issues}`)
+  console.log(`  repos ${p.ownRepos} non-fork of ${p.repoCount} owned · stars ${p.stars} · followers ${p.followers} · PRs ${p.pullRequests} · issues ${p.issues}`)
   console.log(`  contributions ${num(p.contributions)}${p.restricted > 0 ? ` (incl. ${num(p.restricted)} private)` : ''} · streak ${s.current}/${s.longest}`)
   console.log(`  ${langs.map((l) => `${l.name} ${l.pct}%`).join(' · ')}`)
   console.log(`  wrote ${files.length} files`)

@@ -2,6 +2,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { streaks, langShares, cardSVG } from '../scripts/cards.mjs'
+import { profile } from '../scripts/github.mjs'
 
 const day = (date, count) => ({ date, contributionCount: count })
 
@@ -88,6 +89,37 @@ test('a card escapes what it is handed', () => {
   assert.match(svg, /C\+\+ &amp; &quot;friends&quot;/)
 })
 
+// --- the two repo counts, which are not the same number ---------------------
+
+const payload = (nodes, totalCount) => ({
+  user: {
+    contributionsCollection: {
+      restrictedContributionsCount: 0,
+      contributionCalendar: { totalContributions: 1, weeks: [{ contributionDays: [{ date: '2026-09-23', contributionCount: 1 }] }] },
+    },
+    repositories: { totalCount, nodes },
+    followers: { totalCount: 0 },
+  },
+})
+const node = (name, isFork, stargazerCount = 0) => ({ name, isFork, stargazerCount, languages: { edges: [] } })
+
+test('the owned total and the non-fork count are kept apart', () => {
+  const p = profile(payload([node('mine', false), node('also-mine', false), node('someone-elses', true)], 3))
+  assert.equal(p.repoCount, 3, 'every owned repo, forks and all')
+  assert.equal(p.ownRepos, 2, 'only the ones they wrote — what "forks excluded" may be printed beside')
+  assert.equal(p.repoCountIsExact, true)
+})
+
+test('past one page of repositories the non-fork count is only a floor', () => {
+  const p = profile(payload([node('a', false), node('b', true)], 240))
+  assert.equal(p.repoCountIsExact, false, 'the card has to say which hundred it looked at')
+})
+
+test('stars are summed over the same repos the fork qualifier describes', () => {
+  const p = profile(payload([node('mine', false, 7), node('forked', true, 9999)], 2))
+  assert.equal(p.stars, 7)
+})
+
 // --- the files we actually commit -------------------------------------------
 
 const cards = ['overview', 'streak', 'langs', 'heatmap']
@@ -116,5 +148,21 @@ test('the overview card never claims an unmeasured total', () => {
     const svg = readFileSync(new URL(`../assets/card-overview-${t}.svg`, import.meta.url), 'utf8')
     assert.match(svg, /contributions \(last year\)/, 'the contributions row must name its window')
     assert.doesNotMatch(svg, /all[- ]time/i)
+  }
+})
+
+test('a card that says "forks excluded" says so beside the number too', () => {
+  for (const t of ['dark', 'light']) {
+    const svg = readFileSync(new URL(`../assets/card-overview-${t}.svg`, import.meta.url), 'utf8')
+    if (/forks excluded/.test(svg)) assert.match(svg, /repositories \(no forks/, 'the repo row must carry the qualifier its figure was counted under')
+  }
+})
+
+test('the same contribution figure carries the same qualifier on every card', () => {
+  for (const t of ['dark', 'light']) {
+    const read = (c) => readFileSync(new URL(`../assets/card-${c}-${t}.svg`, import.meta.url), 'utf8')
+    const priv = /incl\. private/.test(read('overview'))
+    assert.equal(/incl\. private/.test(read('streak')), priv, 'the streak card prints the same total')
+    assert.equal(/incl\. private/.test(read('heatmap')), priv, 'the heatmap prints the same total')
   }
 })

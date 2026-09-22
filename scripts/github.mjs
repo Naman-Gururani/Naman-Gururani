@@ -70,7 +70,15 @@ export function profile(data) {
     days,
     weeks: weeks.map((w) => (w?.contributionDays ?? []).filter((d) => typeof d?.date === 'string')),
     repos,
+    // Two different repo counts, because they answer two different questions.
+    // `repoCount` is every repository the token can see this user owning, forks
+    // and all. `ownRepos` is the ones they actually wrote — the only figure a
+    // card may print beside the words "forks excluded", and the same basis the
+    // stars sum and the language split already use. When the owned list runs
+    // past the one page we ask for, `repoCountIsExact` is false and `ownRepos`
+    // is a floor rather than a count; the card has to say so.
     repoCount: user.repositories.totalCount ?? repos.length,
+    ownRepos: repos.filter((r) => !r.isFork).length,
     repoCountIsExact: (user.repositories.totalCount ?? repos.length) <= repos.length,
     followers: user.followers?.totalCount ?? 0,
     stars: repos.filter((r) => !r.isFork).reduce((a, r) => a + r.stars, 0),
