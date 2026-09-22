@@ -1,0 +1,41 @@
+# METRICS_TOKEN (optional repo secret): the same personal access token as
+# cards.yml — `read:user` and `repo` scopes. Passed to Platane/snk as
+# `github_token` so the contribution grid it eats can include private
+# contributions; most of this account's activity is private, so the default
+# GITHUB_TOKEN alone would draw an almost-empty snake. Without METRICS_TOKEN
+# this workflow falls back to GITHUB_TOKEN and only public squares appear.
+name: Contribution snake
+on:
+  schedule:
+    - cron: '37 4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  snake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report which token is in use
+        env:
+          METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
+        run: |
+          if [ -n "$METRICS_TOKEN" ]; then
+            echo "using METRICS_TOKEN"
+          else
+            echo "using the default GITHUB_TOKEN: private contributions will not be counted"
+          fi
+      - name: Generate the snake SVGs
+        uses: Platane/snk@v3
+        with:
+          github_user_name: Naman-Gururani
+          github_token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+          outputs: |
+            dist/snake-dark.svg?color_snake=#a9e8ff&color_dots=#141313,#a9e8ff,#d9bcff,#d9bcff,#fcd6ff
+            dist/snake-light.svg?color_snake=#7d4bd0&color_dots=#f4f4f4,#2aa7d0,#7d4bd0,#7d4bd0,#b23fc4
+      - name: Publish to the output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

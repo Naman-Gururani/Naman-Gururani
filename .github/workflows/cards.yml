@@ -1,0 +1,43 @@
+# METRICS_TOKEN (optional repo secret): a personal access token (classic or
+# fine-grained) with `read:user` and `repo` scopes. scripts/cards.mjs uses it
+# to read the contribution calendar and repo list — most of this account's
+# work is private, and the token Actions provides by default can only see
+# public activity. When METRICS_TOKEN is set it is used; otherwise this
+# workflow falls back to the built-in GITHUB_TOKEN and the cards render
+# smaller, public-only (but still correctly labelled) numbers.
+name: Stats cards
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Report which token is in use
+        env:
+          METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
+        run: |
+          if [ -n "$METRICS_TOKEN" ]; then
+            echo "using METRICS_TOKEN"
+          else
+            echo "using the default GITHUB_TOKEN: private contributions will not be counted"
+          fi
+      - name: Render cards
+        run: node scripts/cards.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_LOGIN: Naman-Gururani
+      - name: Commit if anything changed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add assets
+          git diff --staged --quiet || git commit -m 'chore: refresh stats cards'
+          git push
