@@ -44,7 +44,7 @@ Data engineer working on **payments and streaming systems** — Kafka, Flink, Re
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/card-overview-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/card-overview-light.svg">
-  <img alt="Overview card: contributions and commits over the last year, pull requests, repositories and followers." src="assets/card-overview-light.svg" width="100%">
+  <img alt="Overview card: contributions over the last year, pull requests, repositories and followers." src="assets/card-overview-light.svg" width="100%">
 </picture>
 </td>
 <td width="50%" valign="top">

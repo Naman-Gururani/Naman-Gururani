@@ -173,15 +173,15 @@ test('a repository count that includes private repos says so twice', () => {
   }
 })
 
-test('a commits figure that leaves private work out admits it', () => {
-  // `totalCommitContributions` counts only what the token could see. Whenever
-  // the contributions row claims private work, the commits row one line below
-  // is the public remainder and has to say so — otherwise the card prints two
-  // numbers a reader cannot reconcile.
+test('the overview card prints no figure it cannot stand behind', () => {
+  // Stars, issues and commits each came off this card for reading worse than
+  // nothing beside the numbers around them, and each was dropped from the
+  // query along with its row. Pinned here so none of the three drifts back in
+  // unlabelled on a later pass.
   for (const t of ['dark', 'light']) {
     const svg = readFileSync(new URL(`../assets/card-overview-${t}.svg`, import.meta.url), 'utf8')
-    if (/contributions \(last year\) incl\. private/.test(svg))
-      assert.match(svg, /commits \(last year\), excl\. private/, 'the commits row must say what it left out')
+    for (const gone of [/stars/i, /issues/i, /commits/i])
+      assert.doesNotMatch(svg, gone, `the overview card is printing ${gone} again`)
   }
 })
 

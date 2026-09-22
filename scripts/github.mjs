@@ -20,7 +20,6 @@ export async function gql(query, variables, token) {
 export const PROFILE_QUERY = `query($login:String!){
   user(login:$login){
     contributionsCollection{
-      totalCommitContributions
       restrictedContributionsCount
       totalPullRequestContributions
       contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount } } }
@@ -85,7 +84,6 @@ export function profile(data) {
     privateRepos: repos.filter((r) => !r.isFork && r.isPrivate).length,
     repoCountIsExact: (user.repositories.totalCount ?? repos.length) <= repos.length,
     followers: user.followers?.totalCount ?? 0,
-    commits: c.totalCommitContributions ?? 0,
     pullRequests: c.totalPullRequestContributions ?? 0,
     restricted: c.restrictedContributionsCount ?? 0,
     contributions: c.contributionCalendar.totalContributions ?? 0,

@@ -208,6 +208,10 @@ function overviewCard(p, win, theme, stamp) {
   // Order is an argument. The year's contributions lead because they are the
   // figure with something to say; the standing counts follow. Stars and issues
   // used to sit near the top at 1 and 0 — a line each spent saying nothing.
+  // A commits row went the same way: `totalCommitContributions` counts only
+  // what the token can see, so against a calendar that includes private work it
+  // reads far lower and invites the wrong question. The contributions row
+  // already carries that signal, and carries it whole.
   //
   // The repo figure is the non-fork one. `totalCount` would be the owner total
   // — forks and all — sitting an inch above a footer that says forks are
@@ -223,11 +227,6 @@ function overviewCard(p, win, theme, stamp) {
     // Never a total nobody measured: this is the calendar's own year, and it
     // claims private work only when the API said there was some.
     [`contributions (last year)${p.restricted > 0 ? ' incl. private' : ''}`, num(p.contributions)],
-    // `totalCommitContributions` counts only what the token can see. When the
-    // API reports restricted contributions it is holding private ones back, and
-    // this figure is the public remainder — which the label has to admit,
-    // sitting one line under a contributions total that includes them.
-    [`commits (last year)${p.restricted > 0 ? ', excl. private' : ''}`, num(p.commits)],
     ['pull requests (last year)', num(p.pullRequests)],
     [`repositories (${forks}${reposPriv})`, num(p.ownRepos)],
     ['followers', num(p.followers)],
@@ -466,7 +465,7 @@ async function main() {
 
   console.log(`cards: ${source} — ${win.from} → ${win.to}`)
   console.log(`  repos ${p.ownRepos} non-fork (${p.privateRepos} private) of ${p.repoCount} owned · followers ${p.followers} · PRs ${p.pullRequests}`)
-  console.log(`  contributions ${num(p.contributions)}${p.restricted > 0 ? ` (incl. ${num(p.restricted)} private)` : ''} · commits ${num(p.commits)} · streak ${s.current}/${s.longest}`)
+  console.log(`  contributions ${num(p.contributions)}${p.restricted > 0 ? ` (incl. ${num(p.restricted)} private)` : ''} · streak ${s.current}/${s.longest}`)
   console.log(`  ${langs.map((l) => `${l.name} ${l.pct}%`).join(' · ')}`)
   console.log(`  wrote ${files.length} files`)
 }
