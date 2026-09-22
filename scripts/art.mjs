@@ -248,6 +248,8 @@ function deskSVG(pal, theme) {
 @keyframes tapB{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
 .scroll{transform-box:fill-box;transform-origin:0 0;animation:scroll 6s linear infinite}
 @keyframes scroll{from{transform:translateY(0)}to{transform:translateY(-${PERIOD}px)}}
+.caret{animation:caret 1.1s steps(2,end) infinite}
+@keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}
 .steam{transform-box:fill-box;transform-origin:50% 100%;animation:steam 3.2s ease-out infinite}
 @keyframes steam{0%{transform:translateY(0) scale(1);opacity:0}30%{opacity:.6}100%{transform:translateY(-42px) scale(1.8);opacity:0}}
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
@@ -256,7 +258,7 @@ function deskSVG(pal, theme) {
 <g class="a">${rects(DESK_A, pal, SCALE)}</g>
 <g class="b" opacity="0">${rects(DESK_B, pal, SCALE)}</g>
 <clipPath id="${id('well')}"><rect x="${SCREEN.x}" y="${SCREEN.y}" width="${SCREEN.w}" height="${SCREEN.h}"/></clipPath>
-<g clip-path="url(#${id('well')})"><g class="scroll">${codeLines(pal)}</g></g>
+<g clip-path="url(#${id('well')})"><g class="scroll">${codeLines(pal)}</g><rect class="caret" x="${SCREEN.x + 10}" y="${SCREEN.y + SCREEN.h - SCALE * 3}" width="${SCALE}" height="${SCALE * 2}" fill="${pal.t}"/></g>
 ${steam}
 </svg>
 `

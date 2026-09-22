@@ -23,12 +23,11 @@ export const PROFILE_QUERY = `query($login:String!){
       totalCommitContributions
       restrictedContributionsCount
       totalPullRequestContributions
-      totalIssueContributions
       contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount } } }
     }
     repositories(first:100, ownerAffiliations:OWNER, orderBy:{field:PUSHED_AT, direction:DESC}){
       totalCount
-      nodes{ name isFork stargazerCount languages(first:10, orderBy:{field:SIZE, direction:DESC}){ edges{ size node{ name } } } }
+      nodes{ name isFork isPrivate languages(first:10, orderBy:{field:SIZE, direction:DESC}){ edges{ size node{ name } } } }
     }
     followers{ totalCount }
   }
@@ -60,7 +59,7 @@ export function profile(data) {
   const repos = nodes.filter(Boolean).map((n) => ({
     name: n.name,
     isFork: Boolean(n.isFork),
-    stars: n.stargazerCount ?? 0,
+    isPrivate: Boolean(n.isPrivate),
     languages: (n.languages?.edges ?? [])
       .filter((e) => e?.node?.name)
       .map((e) => ({ name: e.node.name, size: e.size ?? 0 })),
@@ -74,17 +73,20 @@ export function profile(data) {
     // `repoCount` is every repository the token can see this user owning, forks
     // and all. `ownRepos` is the ones they actually wrote — the only figure a
     // card may print beside the words "forks excluded", and the same basis the
-    // stars sum and the language split already use. When the owned list runs
-    // past the one page we ask for, `repoCountIsExact` is false and `ownRepos`
-    // is a floor rather than a count; the card has to say so.
+    // language split already uses. When the owned list runs past the one page
+    // we ask for, `repoCountIsExact` is false and `ownRepos` is a floor rather
+    // than a count; the card has to say so.
     repoCount: user.repositories.totalCount ?? repos.length,
     ownRepos: repos.filter((r) => !r.isFork).length,
+    // A token with `repo` scope counts private repositories in `ownRepos`, and
+    // a visitor cannot see them. Counted here so the card's label can say so —
+    // and only when the response actually carried one, the same rule the
+    // contributions row follows with `restricted`.
+    privateRepos: repos.filter((r) => !r.isFork && r.isPrivate).length,
     repoCountIsExact: (user.repositories.totalCount ?? repos.length) <= repos.length,
     followers: user.followers?.totalCount ?? 0,
-    stars: repos.filter((r) => !r.isFork).reduce((a, r) => a + r.stars, 0),
     commits: c.totalCommitContributions ?? 0,
     pullRequests: c.totalPullRequestContributions ?? 0,
-    issues: c.totalIssueContributions ?? 0,
     restricted: c.restrictedContributionsCount ?? 0,
     contributions: c.contributionCalendar.totalContributions ?? 0,
   }

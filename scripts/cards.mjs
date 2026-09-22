@@ -205,23 +205,37 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const serialOf = (code, stamp) => `${code}-${stamp.slice(2).replace(/-/g, '')}`
 
 function overviewCard(p, win, theme, stamp) {
+  // Order is an argument. The year's contributions lead because they are the
+  // figure with something to say; the standing counts follow. Stars and issues
+  // used to sit near the top at 1 and 0 — a line each spent saying nothing.
+  //
   // The repo figure is the non-fork one. `totalCount` would be the owner total
   // — forks and all — sitting an inch above a footer that says forks are
-  // excluded, and disagreeing with the basis the stars row and the languages
-  // card already use. The qualifier rides on the label as well as the footer, so
-  // the number cannot drift away from it again.
+  // excluded, and disagreeing with the basis the languages card already uses.
+  // The qualifiers ride on the labels as well as the footer, so no number can
+  // drift away from what it was counted under again.
+  const forks = p.repoCountIsExact ? 'no forks' : 'no forks, newest 100'
+  // A personal token counts private repositories a visitor cannot see. Claimed
+  // only when the response actually carried one, the same rule `restricted`
+  // follows for contributions.
+  const reposPriv = p.privateRepos > 0 ? ', incl. private' : ''
   const rows = [
-    [p.repoCountIsExact ? 'repositories (no forks)' : 'repositories (no forks, newest 100)', num(p.ownRepos)],
-    ['stars earned', num(p.stars)],
-    ['followers', num(p.followers)],
-    ['pull requests · issues', `${num(p.pullRequests)} · ${num(p.issues)}`],
     // Never a total nobody measured: this is the calendar's own year, and it
     // claims private work only when the API said there was some.
     [`contributions (last year)${p.restricted > 0 ? ' incl. private' : ''}`, num(p.contributions)],
+    // `totalCommitContributions` counts only what the token can see. When the
+    // API reports restricted contributions it is holding private ones back, and
+    // this figure is the public remainder — which the label has to admit,
+    // sitting one line under a contributions total that includes them.
+    [`commits (last year)${p.restricted > 0 ? ', excl. private' : ''}`, num(p.commits)],
+    ['pull requests (last year)', num(p.pullRequests)],
+    [`repositories (${forks}${reposPriv})`, num(p.ownRepos)],
+    ['followers', num(p.followers)],
   ]
   // Beyond one page of repositories the non-fork count is a floor, not a count,
   // and the footer has to say which hundred it looked at.
-  const basis = p.repoCountIsExact ? 'owned repos, forks excluded' : `newest 100 of ${num(p.repoCount)} owned, forks excluded`
+  const owned = p.repoCountIsExact ? 'owned repos' : `newest 100 of ${num(p.repoCount)} owned`
+  const basis = `${owned}${p.privateRepos > 0 ? ' incl. private' : ''}, forks excluded`
   return cardSVG({ title: 'OVERVIEW', serial: serialOf('OV', stamp), rows, footer: `${basis} · ${win.from} → ${win.to}` }, theme)
 }
 
@@ -264,11 +278,13 @@ function streakCard(p, s, win, theme, stamp) {
   )
 }
 
-function langsCard(langs, repoCount, theme, stamp) {
+function langsCard(langs, repoCount, privateRepos, theme, stamp) {
   const ink = INK[theme]
   const pad = 20
   const barW = 420 - pad * 2
   const real = langs.filter((l) => l.name !== 'Other').length
+  // The same count the overview card prints, so it carries the same qualifier.
+  const basis = privateRepos > 0 ? ' incl. private' : ''
   const hue = (i, name) => (name === 'Other' ? ink.dim : rampAt(ink.ramp, real > 1 ? i / (real - 1) : 0))
 
   let cum = 0
@@ -309,8 +325,8 @@ function langsCard(langs, repoCount, theme, stamp) {
       title: 'LANGUAGES',
       serial: serialOf('LG', stamp),
       body,
-      footer: `by bytes · ${repoCount} owned repos, forks excluded`,
-      alt: `Languages by bytes across ${repoCount} owned repositories, forks excluded: ${langs.map((l) => `${l.name} ${l.pct} percent`).join(', ')}.`,
+      footer: `by bytes · ${repoCount} owned repos${basis}, forks excluded`,
+      alt: `Languages by bytes across ${repoCount} owned repositories${basis}, forks excluded: ${langs.map((l) => `${l.name} ${l.pct} percent`).join(', ')}.`,
     },
     theme,
   )
@@ -440,7 +456,7 @@ async function main() {
   for (const theme of ['dark', 'light']) {
     files.push([`card-overview-${theme}.svg`, overviewCard(p, win, theme, stamp)])
     files.push([`card-streak-${theme}.svg`, streakCard(p, s, win, theme, stamp)])
-    files.push([`card-langs-${theme}.svg`, langsCard(langs, p.ownRepos, theme, stamp)])
+    files.push([`card-langs-${theme}.svg`, langsCard(langs, p.ownRepos, p.privateRepos, theme, stamp)])
     files.push([`card-heatmap-${theme}.svg`, heatmapCard(p.weeks, today, s.total, priv, win, theme, stamp)])
   }
   for (const [name, body] of files) if (!body || !body.startsWith('<svg')) throw new Error(`${name} did not render`)
@@ -449,8 +465,8 @@ async function main() {
   for (const [name, body] of files) writeFileSync(new URL(`../assets/${name}`, import.meta.url), body)
 
   console.log(`cards: ${source} — ${win.from} → ${win.to}`)
-  console.log(`  repos ${p.ownRepos} non-fork of ${p.repoCount} owned · stars ${p.stars} · followers ${p.followers} · PRs ${p.pullRequests} · issues ${p.issues}`)
-  console.log(`  contributions ${num(p.contributions)}${p.restricted > 0 ? ` (incl. ${num(p.restricted)} private)` : ''} · streak ${s.current}/${s.longest}`)
+  console.log(`  repos ${p.ownRepos} non-fork (${p.privateRepos} private) of ${p.repoCount} owned · followers ${p.followers} · PRs ${p.pullRequests}`)
+  console.log(`  contributions ${num(p.contributions)}${p.restricted > 0 ? ` (incl. ${num(p.restricted)} private)` : ''} · commits ${num(p.commits)} · streak ${s.current}/${s.longest}`)
   console.log(`  ${langs.map((l) => `${l.name} ${l.pct}%`).join(' · ')}`)
   console.log(`  wrote ${files.length} files`)
 }

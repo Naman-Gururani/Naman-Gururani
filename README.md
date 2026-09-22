@@ -4,7 +4,7 @@
   <img alt="Naman Gururani — data engineer, payments and streaming. A line types itself out: payments that must not lose a record; streams that must not stop; a portfolio you can walk around." src="assets/banner-light.svg" width="100%">
 </picture>
 
-Data engineer working on **payments and streaming systems** — Kafka, Spark, Redis, Java, TypeScript. After hours I build [Enlacey](https://enlacey.com), a services marketplace for my hometown, and small worlds: my portfolio is a [pixel-art game you can walk around](https://naman-gururani.github.io/portfolio/).
+Data engineer working on **payments and streaming systems** — Kafka, Flink, Redis, Java, TypeScript. After hours I build [Enlacey](https://enlacey.com), a services marketplace for my hometown, and small worlds: my portfolio is a [pixel-art game you can walk around](https://naman-gururani.github.io/portfolio/).
 
 <table align="center"><tr><td align="center" width="760"><h3><a href="https://naman-gururani.github.io/portfolio/">▶&nbsp;&nbsp;PLAY MY PORTFOLIO</a></h3></td></tr></table>
 
@@ -44,7 +44,7 @@ Data engineer working on **payments and streaming systems** — Kafka, Spark, Re
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/card-overview-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/card-overview-light.svg">
-  <img alt="Overview card: repositories, stars earned, followers, pull requests and issues, and contributions over the last year." src="assets/card-overview-light.svg" width="100%">
+  <img alt="Overview card: contributions and commits over the last year, pull requests, repositories and followers." src="assets/card-overview-light.svg" width="100%">
 </picture>
 </td>
 <td width="50%" valign="top">
@@ -65,7 +65,8 @@ Data engineer working on **payments and streaming systems** — Kafka, Spark, Re
 </td>
 <td width="50%" valign="top">
 <h3>🛠 What I work with</h3>
-<p><code>Kafka</code> · <code>Spark</code> · <code>Redis</code> · <code>Java&nbsp;/&nbsp;Spring&nbsp;Boot</code> · <code>TypeScript</code> · <code>Postgres</code> · <code>Snowflake</code> · <code>Expo/React&nbsp;Native</code></p>
+<p><code>Kafka</code> · <code>Kafka&nbsp;Streams</code> · <code>Flink</code> · <code>Redis</code> · <code>Java&nbsp;/&nbsp;Spring&nbsp;Boot</code> · <code>TypeScript</code> · <code>Postgres</code> · <code>Snowflake</code> · <code>Expo/React&nbsp;Native</code></p>
+<p><sub>The Kafka and Java work is behind a company firewall; what lives on this account is mostly TypeScript.</sub></p>
 </td>
 </tr>
 </table>
@@ -80,6 +81,8 @@ Data engineer working on **payments and streaming systems** — Kafka, Spark, Re
 <!-- BLOG-POST-LIST:START -->
 - [Building a portfolio you can walk around](https://naman-gururani.github.io/blog/building-a-portfolio-thats-a-game/)
 <!-- BLOG-POST-LIST:END -->
+
+### 🐍 The year, eaten
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Naman-Gururani/Naman-Gururani/output/snake-dark.svg">

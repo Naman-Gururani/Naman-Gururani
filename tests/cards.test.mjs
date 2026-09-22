@@ -101,7 +101,7 @@ const payload = (nodes, totalCount) => ({
     followers: { totalCount: 0 },
   },
 })
-const node = (name, isFork, stargazerCount = 0) => ({ name, isFork, stargazerCount, languages: { edges: [] } })
+const node = (name, isFork, isPrivate = false) => ({ name, isFork, isPrivate, languages: { edges: [] } })
 
 test('the owned total and the non-fork count are kept apart', () => {
   const p = profile(payload([node('mine', false), node('also-mine', false), node('someone-elses', true)], 3))
@@ -115,9 +115,14 @@ test('past one page of repositories the non-fork count is only a floor', () => {
   assert.equal(p.repoCountIsExact, false, 'the card has to say which hundred it looked at')
 })
 
-test('stars are summed over the same repos the fork qualifier describes', () => {
-  const p = profile(payload([node('mine', false, 7), node('forked', true, 9999)], 2))
-  assert.equal(p.stars, 7)
+test('private repos are counted on the same basis the fork qualifier describes', () => {
+  // The figure the card labels "no forks, incl. private" — so the qualifier is
+  // claimed off the same repos the number was counted over, and a private fork
+  // somebody else wrote cannot switch it on.
+  const p = profile(payload([node('mine', false, true), node('public', false, false), node('forked', true, true)], 3))
+  assert.equal(p.ownRepos, 2)
+  assert.equal(p.privateRepos, 1)
+  assert.equal(profile(payload([node('a', false, false), node('f', true, true)], 2)).privateRepos, 0, 'a forked private repo is not one they wrote')
 })
 
 // --- the files we actually commit -------------------------------------------
@@ -158,10 +163,36 @@ test('a card that says "forks excluded" says so beside the number too', () => {
   }
 })
 
+test('a repository count that includes private repos says so twice', () => {
+  // Same rule as the fork qualifier: the label beside the number carries it,
+  // not only the footer, so the two cannot drift apart.
+  for (const t of ['dark', 'light']) {
+    const svg = readFileSync(new URL(`../assets/card-overview-${t}.svg`, import.meta.url), 'utf8')
+    const labelled = /repositories \([^)]*incl\. private\)/.test(svg)
+    assert.equal(/owned[^<]*incl\. private/.test(svg), labelled, 'the footer and the repo row must agree about private repos')
+  }
+})
+
+test('a commits figure that leaves private work out admits it', () => {
+  // `totalCommitContributions` counts only what the token could see. Whenever
+  // the contributions row claims private work, the commits row one line below
+  // is the public remainder and has to say so — otherwise the card prints two
+  // numbers a reader cannot reconcile.
+  for (const t of ['dark', 'light']) {
+    const svg = readFileSync(new URL(`../assets/card-overview-${t}.svg`, import.meta.url), 'utf8')
+    if (/contributions \(last year\) incl\. private/.test(svg))
+      assert.match(svg, /commits \(last year\), excl\. private/, 'the commits row must say what it left out')
+  }
+})
+
 test('the same contribution figure carries the same qualifier on every card', () => {
   for (const t of ['dark', 'light']) {
     const read = (c) => readFileSync(new URL(`../assets/card-${c}-${t}.svg`, import.meta.url), 'utf8')
-    const priv = /incl\. private/.test(read('overview'))
+    // Pinned to the contributions row itself. The overview card also says
+    // "incl. private" about its repository count, which is a different figure
+    // from a different query and may carry the qualifier when the calendar
+    // does not.
+    const priv = /contributions \(last year\) incl\. private/.test(read('overview'))
     assert.equal(/incl\. private/.test(read('streak')), priv, 'the streak card prints the same total')
     assert.equal(/incl\. private/.test(read('heatmap')), priv, 'the heatmap prints the same total')
   }
