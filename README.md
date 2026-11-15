@@ -1,10 +1,10 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-  <img alt="Naman Gururani — data engineer, payments and streaming. A line types itself out: payments that must not lose a record; streams that must not stop; a portfolio you can walk around." src="assets/banner-light.svg" width="100%">
+  <img alt="Naman Gururani — data and backend engineer, payments and streaming. A line types itself out: payments that must not lose a record; streams that must not stop; a portfolio you can walk around; building Enlacey, live on Google Play." src="assets/banner-light.svg" width="100%">
 </picture>
 
-Data engineer working on **payments and streaming systems** — Kafka, Flink, Redis, Java, TypeScript. After hours I build [Enlacey](https://enlacey.com), a services marketplace for my hometown, and small worlds: my portfolio is a [pixel-art game you can walk around](https://naman-gururani.github.io/portfolio/).
+Data and backend engineer working on **payments and streaming systems** — Kafka, Flink, Redis, Java, TypeScript. After hours I build [Enlacey](https://enlacey.com), a services marketplace for my hometown, and small worlds: my portfolio is a [pixel-art game you can walk around](https://naman-gururani.github.io/portfolio/).
 
 <table align="center"><tr><td align="center" width="760"><h3><a href="https://naman-gururani.github.io/portfolio/">▶&nbsp;&nbsp;PLAY MY PORTFOLIO</a></h3></td></tr></table>
 

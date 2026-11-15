@@ -39,7 +39,7 @@ test('the first phrase of the banner is drawn before anything animates', () => {
     const first = svg.match(/<tspan>([^<]+)<\/tspan>/)?.[1]
     assert.ok(first, `${f} carries no tagline`)
     const clips = [...svg.matchAll(/<rect class="t(\d+)-[a-z]+"[^>]*\swidth="([\d.]+)"/g)]
-    assert.equal(clips.length, 3, `${f} should clip three phrases`)
+    assert.equal(clips.length, 4, `${f} should clip four phrases`)
     const base = Number(clips[0][2])
     assert.notEqual(base, 0, `${f} starts its first phrase at zero width — reduced motion would blank the tagline`)
     assert.equal(base, first.length * CH, `${f} first clip must be exactly as wide as ${JSON.stringify(first)}`)

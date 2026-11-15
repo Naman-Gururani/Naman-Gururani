@@ -270,10 +270,12 @@ const PHRASES = [
   'payments that must not lose a record',
   'streams that must not stop',
   'a portfolio you can walk around',
+  'building Enlacey, live on Google Play',
 ]
 const CH = 9                       // one character of 15px monospace
-const SLOT = 100 / PHRASES.length  // each phrase owns a third of the loop
-const TYPE = 17, HOLD = 30         // per-phrase: type for 17%, hold to 30%
+const LOOP = 16                    // seconds; four phrases, 4s each
+const SLOT = 100 / PHRASES.length  // each phrase owns a quarter of the loop
+const TYPE = 12.75, HOLD = 22.5    // per-phrase: type for 2.04s, hold to 3.6s — the pace of the old 12s three-phrase loop
 
 function bannerSVG(ink, theme) {
   const id = s => `${s}-${theme}`
@@ -286,7 +288,7 @@ function bannerSVG(ink, theme) {
   // end-of-phrase position, and the animation overrides both while it runs.
   // That is what a reduced-motion reader is left holding when `animation: none`
   // takes the animation away: one complete, static tagline with the caret
-  // parked after it, rather than three clip rects stuck at zero width and a
+  // parked after it, rather than four clip rects stuck at zero width and a
   // blank line where the tagline should be.
   const clips = PHRASES.map((phrase, i) => {
     const w = phrase.length * CH, t0 = i * SLOT
@@ -310,14 +312,14 @@ function bannerSVG(ink, theme) {
     ]
   })
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 220" width="840" height="220" role="img" aria-label="Naman Gururani — payments that must not lose a record, streams that must not stop, a portfolio you can walk around.">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 220" width="840" height="220" role="img" aria-label="Naman Gururani — data and backend engineer, payments and streaming: payments that must not lose a record, streams that must not stop, a portfolio you can walk around, building Enlacey, live on Google Play.">
 <title>Naman Gururani</title>
 <style>
 ${clips.map(c => c.css).join('\n')}
-${PHRASES.map((_, i) => `.t${i}-${theme}{animation:${id('type' + i)} 12s linear infinite}`).join('\n')}
+${PHRASES.map((_, i) => `.t${i}-${theme}{animation:${id('type' + i)} ${LOOP}s linear infinite}`).join('\n')}
 @keyframes ${id('caret')}{${caretStops.join('')}100%{transform:translateX(0)}}
 @keyframes ${id('blink')}{0%,49%{opacity:1}50%,100%{opacity:0}}
-.caret{transform-box:fill-box;transform-origin:0 0;animation:${id('caret')} 12s linear infinite,${id('blink')} 1s steps(2) infinite}
+.caret{transform-box:fill-box;transform-origin:0 0;animation:${id('caret')} ${LOOP}s linear infinite,${id('blink')} 1s steps(2) infinite}
 .drift{transform-box:fill-box;transform-origin:0 0;animation:${id('drift')} 9s linear infinite}
 @keyframes ${id('drift')}{from{transform:translateX(-736px)}to{transform:translateX(0)}}
 .pulse{animation:${id('pulse')} 4.5s ease-in-out infinite}
@@ -335,7 +337,7 @@ ${clips.map((c, i) => `<clipPath id="${id('type' + i)}"><rect class="t${i}-${the
 <rect width="840" height="220" rx="16" fill="${ink.bg}"/>
 <rect x="0.5" y="0.5" width="839" height="219" rx="15.5" fill="none" stroke="${ink.line}"/>
 <text x="${x0}" y="96" font-family="${SANS}" font-size="44" font-weight="700" letter-spacing="-0.5" fill="${ink.text}">Naman Gururani</text>
-<text x="${x0 + 2}" y="126" font-family="${MONO}" font-size="14" letter-spacing="0.05em" fill="${ink.ramp[0]}">DATA ENGINEER // PAYMENTS &amp; STREAMING</text>
+<text x="${x0 + 2}" y="126" font-family="${MONO}" font-size="14" letter-spacing="0.05em" fill="${ink.ramp[0]}">DATA &amp; BACKEND ENGINEER // PAYMENTS &amp; STREAMING</text>
 <g clip-path="url(#${id('rule')})"><rect class="drift" x="${x0}" y="144" width="1472" height="3" fill="url(#${id('holo')})"/></g>
 ${PHRASES.map((phrase, i) => `<g clip-path="url(#${id('type' + i)})"><text x="${x0}" y="${baseline}" font-family="${MONO}" font-size="15" fill="${ink.text}"><tspan>${phrase}</tspan></text></g>`).join('')}
 <rect class="caret" x="${x0 + 2}" y="172" width="8" height="19" fill="${ink.ramp[0]}" transform="translate(${clips[0].w} 0)"/>
