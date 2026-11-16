@@ -4,7 +4,7 @@
   <img alt="Naman Gururani, Data &amp; Backend Engineer at Barclays, building Enlacey. A line types itself out: hard problems, solved properly; apps that people actually use; a résumé you can walk around; building Enlacey, live on Google Play." src="assets/banner-light.svg" width="100%">
 </picture>
 
-Hi, I'm Naman. I love writing code, and the hard problem that comes before it. By day I'm a Data & Backend Engineer at Barclays, building real-time payment systems in Java, Kafka and Flink. After hours I'm building [Enlacey](https://enlacey.com), my own app for finding trusted local help, live on [Google Play](https://play.google.com/store/apps/details?id=com.enlacey.app). If you're building something of your own, or want to, I'd love to hear about it.
+Hi, I'm Naman. I love writing code, especially when the problem is still a mess. By day I'm a Data & Backend Engineer at Barclays, building real-time payment systems in Java, Kafka and Flink. After hours I'm building [Enlacey](https://enlacey.com), my own app for finding trusted local help, live on [Google Play](https://play.google.com/store/apps/details?id=com.enlacey.app). If you're building something of your own, or want to, I'd love to hear about it.
 
 <table align="center"><tr><td align="center" width="760"><h3><a href="https://naman-gururani.github.io/portfolio/">▶&nbsp;&nbsp;PLAY MY PORTFOLIO</a></h3></td></tr></table>
 
