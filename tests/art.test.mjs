@@ -56,3 +56,13 @@ test('the desk scene keeps a cursor on screen when nothing animates', () => {
     assert.doesNotMatch(caret, /opacity="0"/, `${f} hides its cursor without the animation`)
   }
 })
+
+test('the ADMIT ONE ticket survives GitHub’s proxy and says what it does', () => {
+  for (const f of ['assets/ticket-dark.svg', 'assets/ticket-light.svg']) {
+    const svg = readFileSync(new URL(`../${f}`, import.meta.url), 'utf8')
+    assert.doesNotMatch(svg, /<script|foreignObject|href="https?:/i, `${f} would be stripped or pull a resource`)
+    assert.match(svg, /prefers-reduced-motion/, `${f} must respect reduced motion`)
+    assert.match(svg, /ADMIT ONE/)
+    assert.match(svg, /PLAY ▶/)
+  }
+})

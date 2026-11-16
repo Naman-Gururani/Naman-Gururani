@@ -6,9 +6,16 @@
 
 Hi, I'm Naman. I love writing code, especially when the problem is still a mess. By day I'm a Data & Backend Engineer at Barclays, building real-time payment systems in Java, Kafka and Flink. After hours I'm building [Enlacey](https://enlacey.com), my own app for finding trusted local help, live on [Google Play](https://play.google.com/store/apps/details?id=com.enlacey.app). If you're building something of your own, or want to, I'd love to hear about it.
 
-<table align="center"><tr><td align="center" width="760"><h3><a href="https://naman-gururani.github.io/portfolio/">▶&nbsp;&nbsp;PLAY MY PORTFOLIO</a></h3></td></tr></table>
+<a href="https://naman-gururani.github.io/portfolio/play/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/ticket-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/ticket-light.svg">
+  <img alt="Admit one. Prefer to explore? Play my portfolio as a pixel-art fairground. Play." src="assets/ticket-light.svg" width="100%">
+</picture>
+</a>
 
 <div align="center">
+<a href="https://naman-gururani.github.io/portfolio/"><code>&nbsp;RÉSUMÉ&nbsp;</code></a> &nbsp;
 <a href="https://naman-gururani.github.io/"><code>&nbsp;SITE&nbsp;</code></a> &nbsp;
 <a href="https://naman-gururani.github.io/blog/"><code>&nbsp;BLOG&nbsp;</code></a> &nbsp;
 <a href="https://www.linkedin.com/in/naman-gururani"><code>&nbsp;LINKEDIN&nbsp;</code></a> &nbsp;
@@ -29,8 +36,8 @@ Hi, I'm Naman. I love writing code, especially when the problem is still a mess.
 <td width="50%" valign="top">
 <ul>
 <li>Building <b>Enlacey</b> — an all-category on-demand services + jobs marketplace for Haldwani.</li>
-<li>Writing field notes on exactly-once pipelines and Hinglish semantic search → <a href="https://naman-gururani.github.io/blog/">the Library</a>.</li>
-<li>Most repos are private while they cook; the public ones are meant to be read.</li>
+<li>Contributing to open source: 3 PRs merged so far, in <a href="https://github.com/conductor-oss/conductor/pull/1654">Conductor</a>, <a href="https://github.com/docling-project/docling-java/pull/691">Docling Java</a> and <a href="https://github.com/docling-project/docling/pull/4340">Docling</a>.</li>
+<li>Open to new opportunities in backend, data and full-stack. If you have one, <a href="mailto:gururaninaman@gmail.com">email me</a>.</li>
 </ul>
 </td>
 </tr>

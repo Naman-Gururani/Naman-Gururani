@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 64" width="840" height="64" role="img" aria-label="Admit one. Prefer to explore? Play my portfolio as a pixel-art fairground. Play.">
+<style>
+.sheen-ticket-dark{animation:sweep-ticket-dark 7s ease-in-out infinite}
+@keyframes sweep-ticket-dark{0%,62%{transform:translateX(-260px)}100%{transform:translateX(1100px)}}
+@media (prefers-reduced-motion: reduce){.sheen-ticket-dark{animation:none;opacity:0}}
+</style>
+<defs>
+<linearGradient id="holo-ticket-dark" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#a9e8ff"/><stop offset="0.5" stop-color="#d9bcff"/><stop offset="1" stop-color="#fcd6ff"/>
+</linearGradient>
+<linearGradient id="glare-ticket-dark" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset="0.5" stop-color="#ffffff" stop-opacity="0.09"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip-ticket-dark"><rect width="840" height="64" rx="12"/></clipPath>
+</defs>
+<rect width="840" height="64" rx="12" fill="#141313"/>
+<g clip-path="url(#clip-ticket-dark)"><rect class="sheen-ticket-dark" x="0" y="-20" width="200" height="104" fill="url(#glare-ticket-dark)" transform="rotate(12)"/></g>
+<rect x="0.5" y="0.5" width="839" height="63" rx="11.5" fill="none" stroke="#444748"/>
+<rect x="0.5" y="0.5" width="839" height="63" rx="11.5" fill="none" stroke="url(#holo-ticket-dark)" stroke-opacity="0.45"/>
+<text x="60" y="37" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="11" font-weight="600" letter-spacing="0.2em" fill="url(#holo-ticket-dark)">ADMIT ONE</text>
+<line x1="120" y1="10" x2="120" y2="54" stroke="#444748" stroke-dasharray="3 4"/>
+<text x="142" y="37" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#8d8a89"><tspan font-weight="700" fill="#e5e2e1">Prefer to explore?</tspan> Play my portfolio as a pixel-art fairground.</text>
+<path d="M704 14 H816 V40 L806 50 H704 Z" fill="#f3f1f0"/>
+<text x="760" y="37" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" letter-spacing="0.08em" fill="#0a0a0b">PLAY ▶</text>
+</svg>

@@ -346,6 +346,44 @@ ${[0, 1, 2].map(i => `<rect class="pulse" x="${716 + i * 30}" y="${70 + i * 8}" 
 `
 }
 
+/**
+ * The "ADMIT ONE" ticket that sends a reader into the game: the same ribbon
+ * that opens the résumé page at /portfolio/, drawn as an SVG because a GitHub
+ * README cannot carry CSS. A light sheen crosses it every few seconds; with
+ * reduced motion the sheen never runs. The README wraps it in the link.
+ */
+function ticketSVG(ink, theme) {
+  const id = s => `${s}-ticket-${theme}`
+  const btnBg = theme === 'dark' ? '#f3f1f0' : '#1c1b1b'
+  const btnInk = theme === 'dark' ? '#0a0a0b' : '#f3f1f0'
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 64" width="840" height="64" role="img" aria-label="Admit one. Prefer to explore? Play my portfolio as a pixel-art fairground. Play.">
+<style>
+.${id('sheen')}{animation:${id('sweep')} 7s ease-in-out infinite}
+@keyframes ${id('sweep')}{0%,62%{transform:translateX(-260px)}100%{transform:translateX(1100px)}}
+@media (prefers-reduced-motion: reduce){.${id('sheen')}{animation:none;opacity:0}}
+</style>
+<defs>
+<linearGradient id="${id('holo')}" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="${ink.ramp[0]}"/><stop offset="0.5" stop-color="${ink.ramp[1]}"/><stop offset="1" stop-color="${ink.ramp[2]}"/>
+</linearGradient>
+<linearGradient id="${id('glare')}" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset="0.5" stop-color="#ffffff" stop-opacity="${theme === 'dark' ? 0.09 : 0.35}"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="${id('clip')}"><rect width="840" height="64" rx="12"/></clipPath>
+</defs>
+<rect width="840" height="64" rx="12" fill="${ink.bg}"/>
+<g clip-path="url(#${id('clip')})"><rect class="${id('sheen')}" x="0" y="-20" width="200" height="104" fill="url(#${id('glare')})" transform="rotate(12)"/></g>
+<rect x="0.5" y="0.5" width="839" height="63" rx="11.5" fill="none" stroke="${ink.line}"/>
+<rect x="0.5" y="0.5" width="839" height="63" rx="11.5" fill="none" stroke="url(#${id('holo')})" stroke-opacity="0.45"/>
+<text x="60" y="37" text-anchor="middle" font-family="${MONO}" font-size="11" font-weight="600" letter-spacing="0.2em" fill="url(#${id('holo')})">ADMIT ONE</text>
+<line x1="120" y1="10" x2="120" y2="54" stroke="${ink.line}" stroke-dasharray="3 4"/>
+<text x="142" y="37" font-family="${SANS}" font-size="15" fill="${ink.dim}"><tspan font-weight="700" fill="${ink.text}">Prefer to explore?</tspan> Play my portfolio as a pixel-art fairground.</text>
+<path d="M704 14 H816 V40 L806 50 H704 Z" fill="${btnBg}"/>
+<text x="760" y="37" text-anchor="middle" font-family="${MONO}" font-size="13" font-weight="700" letter-spacing="0.08em" fill="${btnInk}">PLAY ▶</text>
+</svg>
+`
+}
+
 mkdirSync(new URL('../assets/', import.meta.url), { recursive: true })
 const write = (name, body) => {
   writeFileSync(new URL(`../assets/${name}`, import.meta.url), body)
@@ -355,3 +393,5 @@ write('banner-dark.svg', bannerSVG(INK.dark, 'dark'))
 write('banner-light.svg', bannerSVG(INK.light, 'light'))
 write('desk-dark.svg', deskSVG(PAL_DARK, 'dark'))
 write('desk-light.svg', deskSVG(PAL_LIGHT, 'light'))
+write('ticket-dark.svg', ticketSVG(INK.dark, 'dark'))
+write('ticket-light.svg', ticketSVG(INK.light, 'light'))
