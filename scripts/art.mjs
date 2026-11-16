@@ -267,9 +267,9 @@ ${steam}
 const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
 const MONO = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
 const PHRASES = [
-  'payments that must not lose a record',
-  'streams that must not stop',
-  'a portfolio you can walk around',
+  'hard problems, solved properly',
+  'apps that people actually use',
+  'a résumé you can walk around',
   'building Enlacey, live on Google Play',
 ]
 const CH = 9                       // one character of 15px monospace
@@ -312,7 +312,7 @@ function bannerSVG(ink, theme) {
     ]
   })
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 220" width="840" height="220" role="img" aria-label="Naman Gururani — data and backend engineer, payments and streaming: payments that must not lose a record, streams that must not stop, a portfolio you can walk around, building Enlacey, live on Google Play.">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 220" width="840" height="220" role="img" aria-label="Naman Gururani, Data &amp; Backend Engineer at Barclays, building Enlacey: hard problems, solved properly; apps that people actually use; a résumé you can walk around; building Enlacey, live on Google Play.">
 <title>Naman Gururani</title>
 <style>
 ${clips.map(c => c.css).join('\n')}
@@ -337,7 +337,7 @@ ${clips.map((c, i) => `<clipPath id="${id('type' + i)}"><rect class="t${i}-${the
 <rect width="840" height="220" rx="16" fill="${ink.bg}"/>
 <rect x="0.5" y="0.5" width="839" height="219" rx="15.5" fill="none" stroke="${ink.line}"/>
 <text x="${x0}" y="96" font-family="${SANS}" font-size="44" font-weight="700" letter-spacing="-0.5" fill="${ink.text}">Naman Gururani</text>
-<text x="${x0 + 2}" y="126" font-family="${MONO}" font-size="14" letter-spacing="0.05em" fill="${ink.ramp[0]}">DATA &amp; BACKEND ENGINEER // PAYMENTS &amp; STREAMING</text>
+<text x="${x0 + 2}" y="126" font-family="${MONO}" font-size="14" letter-spacing="0.05em" fill="${ink.ramp[0]}">DATA &amp; BACKEND ENGINEER @ BARCLAYS // BUILDING ENLACEY</text>
 <g clip-path="url(#${id('rule')})"><rect class="drift" x="${x0}" y="144" width="1472" height="3" fill="url(#${id('holo')})"/></g>
 ${PHRASES.map((phrase, i) => `<g clip-path="url(#${id('type' + i)})"><text x="${x0}" y="${baseline}" font-family="${MONO}" font-size="15" fill="${ink.text}"><tspan>${phrase}</tspan></text></g>`).join('')}
 <rect class="caret" x="${x0 + 2}" y="172" width="8" height="19" fill="${ink.ramp[0]}" transform="translate(${clips[0].w} 0)"/>

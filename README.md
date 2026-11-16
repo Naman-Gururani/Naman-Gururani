@@ -1,10 +1,10 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-  <img alt="Naman Gururani — data and backend engineer, payments and streaming. A line types itself out: payments that must not lose a record; streams that must not stop; a portfolio you can walk around; building Enlacey, live on Google Play." src="assets/banner-light.svg" width="100%">
+  <img alt="Naman Gururani, Data &amp; Backend Engineer at Barclays, building Enlacey. A line types itself out: hard problems, solved properly; apps that people actually use; a résumé you can walk around; building Enlacey, live on Google Play." src="assets/banner-light.svg" width="100%">
 </picture>
 
-Data and backend engineer working on **payments and streaming systems** — Kafka, Flink, Redis, Java, TypeScript. After hours I build [Enlacey](https://enlacey.com), a services marketplace for my hometown, and small worlds: my portfolio is a [pixel-art game you can walk around](https://naman-gururani.github.io/portfolio/).
+Hi, I'm Naman. I love writing code, and the hard problem that comes before it. By day I'm a Data & Backend Engineer at Barclays, building real-time payment systems in Java, Kafka and Flink. After hours I'm building [Enlacey](https://enlacey.com), my own app for finding trusted local help, live on [Google Play](https://play.google.com/store/apps/details?id=com.enlacey.app). If you're building something of your own, or want to, I'd love to hear about it.
 
 <table align="center"><tr><td align="center" width="760"><h3><a href="https://naman-gururani.github.io/portfolio/">▶&nbsp;&nbsp;PLAY MY PORTFOLIO</a></h3></td></tr></table>
 
