@@ -6,7 +6,7 @@
 
 Hi, I'm Naman. I love writing code, especially when the problem is still a mess. By day I'm a Data & Backend Engineer at Barclays, building real-time payment systems in Java, Kafka and Flink. After hours I'm building [Enlacey](https://enlacey.com), my own app for finding trusted local help, live on [Google Play](https://play.google.com/store/apps/details?id=com.enlacey.app). If you're building something of your own, or want to, I'd love to hear about it.
 
-<a href="https://naman-gururani.github.io/portfolio/play/">
+<a href="https://naman-gururani.github.io/play/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ticket-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/ticket-light.svg">
@@ -15,7 +15,7 @@ Hi, I'm Naman. I love writing code, especially when the problem is still a mess.
 </a>
 
 <div align="center">
-<a href="https://naman-gururani.github.io/portfolio/"><code>&nbsp;RÉSUMÉ&nbsp;</code></a> &nbsp;
+<a href="https://naman-gururani.github.io/"><code>&nbsp;RÉSUMÉ&nbsp;</code></a> &nbsp;
 <a href="https://naman-gururani.github.io/"><code>&nbsp;SITE&nbsp;</code></a> &nbsp;
 <a href="https://naman-gururani.github.io/blog/"><code>&nbsp;BLOG&nbsp;</code></a> &nbsp;
 <a href="https://www.linkedin.com/in/naman-gururani"><code>&nbsp;LINKEDIN&nbsp;</code></a> &nbsp;
