@@ -16,7 +16,6 @@ Hi, I'm Naman. I love writing code, especially when the problem is still a mess.
 
 <div align="center">
 <a href="https://naman-gururani.github.io/"><code>&nbsp;RÉSUMÉ&nbsp;</code></a> &nbsp;
-<a href="https://naman-gururani.github.io/"><code>&nbsp;SITE&nbsp;</code></a> &nbsp;
 <a href="https://naman-gururani.github.io/blog/"><code>&nbsp;BLOG&nbsp;</code></a> &nbsp;
 <a href="https://www.linkedin.com/in/naman-gururani"><code>&nbsp;LINKEDIN&nbsp;</code></a> &nbsp;
 <a href="mailto:gururaninaman@gmail.com"><code>&nbsp;EMAIL&nbsp;</code></a>
